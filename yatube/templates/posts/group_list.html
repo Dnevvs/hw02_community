@@ -1,0 +1,31 @@
+<!DOCTYPE html> <!-- Используется html 5 версии -->
+<html lang="ru"> <!-- Язык сайта - русский -->
+{% extends 'base.html' %}
+  {% block content %}
+    <head>    
+      <title>{{ group.title }}</title>
+    </head>
+    <body>
+      <main>
+        <!-- класс py-5 создает отступы сверху и снизу блока -->
+        <div class="container py-5">
+          <h1>
+            Записи сообщества {{ group.title }}
+          </h1>
+          {% for post in posts %}
+            <ul>
+              <li>
+                Автор: {{ post.author.get_full_name }}
+              </li>
+              <li>
+                Дата публикации: {{ post.pub_date|date:"d E Y" }}
+              </li>
+            </ul>
+            <p>{{ post.text }}</p>
+            {% if not forloop.last %}<hr>{% endif %}
+          {% endfor %} 
+        </div>  
+      </main>
+    </body>
+  {% endblock %}
+</html>
