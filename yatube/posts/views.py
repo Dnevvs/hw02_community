@@ -6,8 +6,10 @@ POSTS_AMOUNT: int = 10
 
 def index(request):
     posts = Post.objects.select_related('group')[:POSTS_AMOUNT]
+    title = 'Последние обновления на сайте'
     context = {
         'posts': posts,
+        'title': title 
     }
     return render(request, 'posts/index.html', context)
 
